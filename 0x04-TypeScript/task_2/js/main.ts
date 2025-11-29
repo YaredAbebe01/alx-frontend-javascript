@@ -1,3 +1,5 @@
+// --------- Task 5 (Advanced Types Part 1) ---------
+
 export interface DirectorInterface {
   workFromHome(): string;
   getCoffeeBreak(): string;
@@ -38,7 +40,6 @@ export class Teacher implements TeacherInterface {
   }
 }
 
-// CreateEmployee function
 export function createEmployee(salary: number | string): Director | Teacher {
   if (typeof salary === "number" && salary < 500) {
     return new Teacher();
@@ -46,9 +47,11 @@ export function createEmployee(salary: number | string): Director | Teacher {
   return new Director();
 }
 
+// --------- Task 6 (Type Predicate + executeWork) ---------
 
+// ALX requires method-checking type predicate, NOT instanceof.
 export function isDirector(employee: Director | Teacher): employee is Director {
-  return employee instanceof Director;
+  return (employee as Director).workDirectorTasks !== undefined;
 }
 
 export function executeWork(employee: Director | Teacher): string {
@@ -58,11 +61,6 @@ export function executeWork(employee: Director | Teacher): string {
   return employee.workTeacherTasks();
 }
 
-
-export type Subjects = "Math" | "History";
-
-export function teachClass(todayClass: Subjects): string {
-  if (todayClass === "Math") return "Teaching Math";
-  return "Teaching History";
-}
-
+// Uncomment to test:
+// console.log(executeWork(createEmployee(200)));   // Getting to work
+// console.log(executeWork(createEmployee(1000)));  // Getting to director tasks
