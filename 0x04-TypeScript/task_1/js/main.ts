@@ -12,12 +12,22 @@ interface Teacher {
   [key: string]: any;
 }
 
-// Director Interface (ALX expects EXACT name "Director")
+// Director Interface (must be EXACT name for ALX)
 interface Director extends Teacher {
   numberOfReports: number;
 }
 
-// Example Teacher object
+// Interface for printTeacher function
+interface printTeacherFunction {
+  (firstName: string, lastName: string): string;
+}
+
+// printTeacher implementation
+const printTeacher: printTeacherFunction = (firstName, lastName) => {
+  return `${firstName} ${lastName}`;
+};
+
+// Test Teacher object
 const teacher3: Teacher = {
   firstName: 'John',
   fullTimeEmployee: false,
@@ -28,7 +38,7 @@ const teacher3: Teacher = {
 
 console.log(teacher3);
 
-// Example Director object (must match EXACT interface name)
+// Test Director object
 const director1: Director = {
   firstName: 'John',
   lastName: 'Doe',
@@ -38,3 +48,6 @@ const director1: Director = {
 };
 
 console.log(director1);
+
+// Test printTeacher function
+console.log(printTeacher("John", "Doe")); // John Doe
