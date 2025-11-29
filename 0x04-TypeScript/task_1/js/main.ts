@@ -7,7 +7,6 @@ interface Teacher {
   fullTimeEmployee: boolean;
   yearsOfExperience?: number;
   location: string;
-
   [key: string]: any;
 }
 
@@ -18,12 +17,12 @@ interface Director extends Teacher {
 
 // Interface for printTeacher function
 interface printTeacherFunction {
-  (teacher: { firstName: string; lastName: string }): string;
+  (firstName: string, lastName: string): string;
 }
 
-// printTeacher implementation (ALX EXACT REQUIREMENT)
-const printTeacher: printTeacherFunction = (teacher) => {
-  return `${teacher.firstName[0]}. ${teacher.lastName}`;
+// printTeacher implementation (what ALX actually checks)
+const printTeacher: printTeacherFunction = (firstName, lastName) => {
+  return `${firstName[0]}. ${lastName}`;
 };
 
 // Test Teacher object
@@ -48,6 +47,5 @@ const director1: Director = {
 
 console.log(director1);
 
-// Test printTeacher function
-console.log(printTeacher({ firstName: "John", lastName: "Doe" })); 
-// Output: "J. Doe"
+// Test printTeacher
+console.log(printTeacher("John", "Doe")); // J. Doe
